@@ -5,7 +5,7 @@ using namespace std;
 class Student {
 public:
     int roll;
-    string name;
+    char name[20];
     int marks;
 
     void input() {
@@ -35,13 +35,13 @@ int main() {
         cin >> choice;
 
         if (choice == 1) {
-            file.open("students.dat", ios::out | ios::app);
+            file.open("students.dat", ios::out | ios::app | ios::binary);
             s.input();
             file.write((char*)&s, sizeof(s));
             file.close();
-        } 
+        }
         else if (choice == 2) {
-            file.open("students.dat", ios::in);
+            file.open("students.dat", ios::in | ios::binary);
             cout << "\nRoll\tName\tMarks\n";
             while (file.read((char*)&s, sizeof(s))) {
                 s.display();
